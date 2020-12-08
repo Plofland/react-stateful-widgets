@@ -44,7 +44,7 @@ export default function Squares() {
     // (unless it already is, in which case we should reset
     // the currently active square id back to initial state).
 
-    setActiveSquare(id === activeSquare ? setActiveSquare(null) : setActiveSquare(id))
+    id === activeSquare ? setActiveSquare(null) : setActiveSquare(id)
   };
 
   return (
