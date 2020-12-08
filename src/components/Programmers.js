@@ -29,16 +29,26 @@ export default function Programmers() {
   // The programmers list on the one hand, and the id of the featured programmer on the other.
 
   const [programmers] = useState(listOfAwesome);
-
+  const [programmerId, setProgrammerId] = useState(null);
 
 
   const getNameOfFeatured = () => {
+    const devName = programmers.filter((dev) => dev.id===programmerId);
+    console.log(devName);
+    return devName[0].name;
+  }
+    
+    // if(dev.id === programmerId){
+    //   console.log(dev.name);
+    //   return dev[0].name
+    
+
     // Leave this for last!
     // This is NOT an event handler but a helper function. See its usage inside the JSX.
     // It's going to utilize both slices of state to return the _name_ of the featured dev.
     // The beauty of closures is that we can "see" both slices of state from this region
     // of the program, without needing to inject the information through arguments.
-  };
+  
 
   const style = {
     fontSize: '1.5em',
@@ -56,7 +66,7 @@ export default function Programmers() {
           we could never add or edit programmers in the future. The list would be a static thing." */
           programmers.map(dev =>
             <div className='programmer' key={dev.id}>
-              {dev.name} <button onClick={() => { /* in here set the featured id to be dev.id */ }}>Feature</button>
+              {dev.name} <button onClick={() => { setProgrammerId(dev.id)}}>Feature</button>
             </div>
           )
         }
@@ -66,7 +76,8 @@ export default function Programmers() {
           // Ternaries are fantastic to render "one thing or the other" depending on the "truthiness" of something.
           // Pseudo-code: if the currently featured id is truthy render text 1, otherwise render text 2.
           // Replace the hard-coded false with the correct variable.
-          false
+          // false
+          programmerId
             ? `🎉 Let's celebrate ${getNameOfFeatured()}! 🥳`
             : 'Pick an awesome programmer'
         }
