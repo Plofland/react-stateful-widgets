@@ -28,35 +28,44 @@ STEPS 4, 5, 6:
   Inside these click handlers set the correct mood, using 'setMood' and the variables below the imports.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, {useState} from 'react'; /* STEP 0 */
 
 const initialMood = 'Not sure how I feel';
 const happyMood = 'Quite happy!';
 const sadMood = 'Rather sad';
 
+// const [mood, setMood] = useState('Not sure how I feel') ASK THIS QUESTION: Why is the Moods function not able to pull in this variable?
+
 export default function Moods() {
   /* STEP 1 */
 
+  const [mood, setMood] = useState('Not sure how I feel')
+
   const makeHappy = () => {
-    /* STEP 4 */
+    // setMood(mood = 'Quite happy!')
+    setMood(happyMood)
   };
   const makeSad = () => {
-    /* STEP 5 */
+    // setMood(mood = 'Rather sad')
+    setMood(sadMood)
   };
   const reset = () => {
     /* STEP 6 */
+    setMood(initialMood)
   };
 
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'crimson', /* STEP 2 */
+    color: mood === sadMood ? 'crimson' : 'royalblue',  
+    // ASK THIS QUESTION: How do I set it so that when I hit the reset button, it changes the text color to crimson?
+    // Why does this line of code not accomplish this goal? color: mood === sadMood || initialMood ? 'crimson' : 'royalblue',
   };
 
   return (
     <div className='widget-moods container'>
       <h2>Moods</h2>
-      <div id='mood' style={style}>Not sure how I feel</div> {/* STEP 3 */}
+      <div id='mood' style={style}>{mood}</div> {/* STEP 3 */}
       <div>
         <button id='makeHappy' onClick={makeHappy}>Make Happy</button>
         <button id='makeSad' onClick={makeSad}>Make Sad</button>
