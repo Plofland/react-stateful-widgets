@@ -38,9 +38,9 @@ export default function Programmers() {
     return devName[0].name;
   }
     
-    // if(dev.id === programmerId){
-    //   console.log(dev.name);
-    //   return dev[0].name
+    // Other coders' solutions to this function:~~~~~~~
+    // return programmers[programmerId - 1].name
+    // return programmers.find(e => e.id === programmerId).name
     
 
     // Leave this for last!
